@@ -42,6 +42,9 @@ func (l *LinkedList) Pop() error {
 		l.head = nil
 		return nil
 	}
+	if l.head == nil {
+		return errors.New("error! List is empty")
+	}
 	tmp := l.head
 	for tmp.next.next != nil {
 		tmp = tmp.next
@@ -53,6 +56,9 @@ func (l *LinkedList) Pop() error {
 func (l *LinkedList) At(pos int) (int, error) {
 	if pos < 0 || pos > l.Size() {
 		return 0, errors.New("out of range")
+	}
+	if l.head == nil {
+		return 0, errors.New("error! List is empty")
 	}
 	tmp := l.head
 	index := 0
@@ -76,6 +82,9 @@ func (l *LinkedList) Size() int {
 func (l *LinkedList) DeleteFrom(pos int) error {
 	if pos < 0 || pos > l.Size() {
 		return errors.New("out of range")
+	}
+	if l.head == nil {
+		return errors.New("error! List is empty")
 	}
 	tmp := l.head
 	if pos == 0 {
